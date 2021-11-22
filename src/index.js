@@ -1,16 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
-import { createStore, compose } from "redux";
+
+import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { createFirestoreInstance } from "redux-firestore";
-import { rootReducer } from "./ducks/reducers";
-import App from "./App";
+
 import { BrowserRouter } from "react-router-dom";
+
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+
+import { store } from "./store";
+import App from "./App";
+
+import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
 const firebaseConfig = {
@@ -31,9 +36,6 @@ const rrfConfig = {
 
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
-
-const initialState = {};
-const store = createStore(rootReducer, initialState);
 
 const rrfProps = {
   firebase,
